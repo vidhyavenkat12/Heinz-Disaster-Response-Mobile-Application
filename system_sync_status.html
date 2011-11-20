@@ -36,6 +36,10 @@ function getAllItems() {
     var i = 0;
     var logLength = localStorage.length-1; //how many items are in the database starting with zero
 
+    if(localStorage.length==0)
+	{
+		document.write("<h3> All records have been synchronized with the server at this stage </h3>");
+	}
     //now we are going to loop through each item in the database
     for (i = 0; i <= logLength; i++) {
         //lets setup some variables for the key and values
