@@ -34,25 +34,25 @@ document.location="hello.java";
 function getAllItems() {
     var timeLog = ""; //the variable that will hold our html
     var i = 0;
-    var logLength = localStorage.length-1; //how many items are in the database starting with zero
+    var logLength = localStorage.length-1; 
 
-    if(localStorage.length==0)
-	{
-		document.write("<h3> All records have been synchronized with the server at this stage </h3>");
-	}
-    //now we are going to loop through each item in the database
+    var count=0;
+
+    
+    
     for (i = 0; i <= logLength; i++) {
-        //lets setup some variables for the key and values
+        
         var itemKey = localStorage.key(i);
 
         var values = localStorage.getItem(itemKey);
 	//document.write("itemkey : "+itemKey+" values: "+values);
-
+	var fname,lname,zip,city,state;
 	values = values.split(","); //create an array of the values
 	for(j=0;j<values.length;j++){
- 	var fname,lname,zip,city,state;
+ 	//
 	if (values[j].match(/txt_first_name/)) {  
 	fname=values[j].substring(18,values[j].length-1);
+	
 	}
 	//values[j].match(/txt_last_name/)?document.write("Client last Name: "+values[j].substring(18,values[j].length-1)+"\n <br>"):document.write("last name not recorded<br>");
 
@@ -71,13 +71,20 @@ function getAllItems() {
 	if (values[j].match(/txt_state/)) {  
 	state=values[j].substring(13,values[j].length-1);
 	}
-
+	//document.write("<h4> <center> <font color=\"green\"> Client First Name: "+fname+" Client Last Name: "+lname+" City: "+city+" State: "+state+" Zipcode: "+zip+" </center> </font> </h4>");
 	
 	}
-	document.write("<h4> <center> <font color=\"green\"> Client First Name: "+fname+" Client Last Name: "+lname+" City: "+city+" State: "+state+" Zipcode: "+zip+" </center> </font> </h4>");
 
+	if(fname!=null && lname!=null) {
+	document.write("<h4> <center> <font color=\"green\"> Client First Name: "+fname+" Client Last Name: "+lname+" City: "+city+" State: "+state+" Zipcode: "+zip+" </center> </font> </h4>");
+	count=count+1;
+	}
 
   	 }
+
+	if(count==0) {
+		document.write("<h3> All records have been synchronized with the server at this stage </h3>");
+	}
 
 }
 
